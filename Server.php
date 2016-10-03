@@ -89,8 +89,17 @@ class Server extends Connection
     protected function doHandshake()
     {
         $connection = $this->getConnection();
-        $buffer     = $connection->read(2048);
-        $request    = $this->getRequest();
+
+        if (true === $connection->getSocket()->isSecured()) {
+            $connection->enableEncryption(true, $connection::ENCRYPTION_TLS);
+        }
+
+        $buffer = $connection->read(2048);
+
+        var_dump($buffer);
+        //TODO why buffer are empty when encrypted
+
+        $request = $this->getRequest();
         $request->parse($buffer);
 
         // Rfc6455.
