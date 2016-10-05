@@ -1,4 +1,6 @@
-certificate:
-	sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout snippet.key -out snippet.crt
-	cat snippet.key > snippet.pem
-	cat snippet.crt >> snippet.pem
+build:
+	openssl req -nodes -x509 -newkey rsa:4096 -keyout cert/key.pem -out cert/cert.crt -days 365
+	cat cert/cert.crt cert/key.pem >> cert/cert.pem
+
+test:
+	openssl s_client -showcerts -connect 127.0.0.1:8889

@@ -8,9 +8,7 @@ require_once(dirname(__DIR__)
 $Context = \Hoa\Stream\Context::getInstance('SnippetTLS');
 $Context->setOptions([
     'ssl' => [
-        'local_cert' => __DIR__ . DIRECTORY_SEPARATOR . 'snippet.pem',
-        'allow_self_signed' => true,
-        'verify_peer' => false,
+        'local_cert' => __DIR__ . DIRECTORY_SEPARATOR . 'cert' . DIRECTORY_SEPARATOR . 'cert.pem',
     ]
 ]);
 
